@@ -17,10 +17,14 @@ addpath('distinguishable_colors/')
 addpath('Violinplot-Matlab/')
 
 % setup
-color_dist = distinguishable_colors(6);
+% color_dist = distinguishable_colors(6);
 legendStr = {'Fixed-Wing','Helicopter','Multicopter','QP','Tailsitter','FPV'};
 csvfile = 'dataset.csv';
 printFlag = 0; % flag (1 is on, 0 is off) to print plots to pdf
+
+% Set colors - from https://sashamaps.net/docs/resources/20-colors/
+% in order: green, orange, purple, maroon, navy, black
+color_dist = [60 180 75; 245 130 48; 145 30 180; 128 0 0; 0 0 128; 0 0 0]./255;
 
 % read data
 data = readtable(csvfile);
@@ -65,6 +69,7 @@ axPos2 = [0.75 4.75 6 3];
 axPos3 = [0.75 0.5 6 3];
 yval_label = 'Max. Speed (mph)';
 yval = 'Speed_mph_';
+filename = 'speed.pdf';
 makePlot;
 if ( printFlag )
     print(gcf,'-dpdf','speed.pdf')
@@ -74,6 +79,7 @@ end
 yval_label = 'Size (ft)';
 yval = 'Size_ft_';
 ytickvec = [0:2:22];
+filename = 'size.pdf';
 makePlot;
 if ( printFlag )
     print(gcf,'-dpdf','size.pdf')
@@ -84,6 +90,7 @@ yval_label = 'Flight Time (hrs)';
 yval = 'FlightTime_min_';
 scale = 1/60;
 ytickvec = [0:2:26];
+filename = 'time.pdf';
 makePlot;
 if ( printFlag )
     print(gcf,'-dpdf','endurance.pdf')
@@ -95,6 +102,7 @@ yval = 'Payload_lbs_';
 legendLoc = 'southeast';
 scale = 1;
 ytickvec = [0:20:120];
+filename = 'payload.pdf';
 makePlot;
 if ( printFlag )
     print(gcf,'-dpdf','payload.pdf')
@@ -106,6 +114,7 @@ yval = 'PayloadFraction';
 scale = 1;
 legendLoc = 'northeast';
 ytickvec = [0:0.1:1];
+filename = 'frac.pdf';
 makePlot;
 if ( printFlag )
     print(gcf,'-dpdf','payload_frac.pdf')

@@ -1,5 +1,5 @@
 ylimvec = [0 max(ytickvec)];
-figure;
+fig = figure;
 ax1 = axes;
 ax1.Units = 'inches';
 ax1.Position = axPos1;
@@ -27,7 +27,7 @@ for i = 1:1:length(tableTypes)
     g = [g; table.Type];
     hold on;
 end
-violins = violinplot(X,g,'EdgeColor',[0.1 0.1 0.1]);
+violins = violinplot(X,g,'ViolinColor',color_dist,'EdgeColor',[0.1 0.1 0.1]);
 grid on;
 xlabel('UAS Type')
 ylabel(yval_label)
@@ -60,3 +60,4 @@ set(gcf,'Color','w')
 set(gcf,'Units','inches')
 set(gcf,'Position',figPosSize)
 set(gcf,'PaperSize',figPaperSize, 'Units', 'inches');
+saveas(fig,filename)
